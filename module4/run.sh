@@ -1,5 +1,3 @@
-make clean
-make
 ./seq
 ./mp1
 ./mp2

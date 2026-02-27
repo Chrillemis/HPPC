@@ -33,13 +33,31 @@ OPT=-O3 -ffast-math
 
 CXXFLAGS := $(OPT) -Wall -march=native -g -std=c++23 -DNFREQ=$(NFREQ) $(NUMA_FLAG)
 
-default: seq mp
+default: seq mp1 mp2 mp3 mp4 mp5
 
 seq: seismogram_seq.cpp
 	$(CXX) seismogram_seq.cpp $(CXXFLAGS) -o seq
 
-mp: seismogram_omp.cpp
-	$(CXX) seismogram_omp.cpp $(CXXFLAGS) -fopenmp -o mp
+# mp: seismogram_omp1.cpp
+# 	$(CXX) seismogram_omp1.cpp $(CXXFLAGS) -fopenmp -o mp
+
+mp1: seismogram_omp1.cpp
+	$(CXX) seismogram_omp1.cpp $(CXXFLAGS) -fopenmp -o mp1
+
+mp2: seismogram_omp2.cpp
+	$(CXX) seismogram_omp2.cpp $(CXXFLAGS) -fopenmp -o mp2
+
+mp3: seismogram_omp3.cpp
+	$(CXX) seismogram_omp3.cpp $(CXXFLAGS) -fopenmp -o mp3
+
+mp4: seismogram_omp4.cpp
+	$(CXX) seismogram_omp4.cpp $(CXXFLAGS) -fopenmp -o mp4
+
+mp5: seismogram_omp5.cpp
+	$(CXX) seismogram_omp5.cpp $(CXXFLAGS) -fopenmp -o mp5
+
+# mpone: seismogram_omp1.cpp 
+#  	$(CXX) seismogram_omp1.cpp $(CXXFLAGS) -fopenmp -o mpone
 
 clean:
-	rm -fr seq mp
+	rm -fr seq mp1 mp2 mp3 mp4 mp5

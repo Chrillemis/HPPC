@@ -111,15 +111,20 @@ void fft(VectorType& x)
 
 	// divide
 	std::vector<Complex> even(N/2), odd(N/2);
+    // #pragma omp parallel
+    // {
+    // #pragma omp for
 	for (long i=0; i<N/2; i++) {
 	    even[i] = x[2*i];
 	    odd[i]  = x[2*i+1];
 	}
-
+    // #pragma omp barrier
+    // #pragma omp single nowait
 	// conquer
 	fft(even);
 	fft(odd);
-
+    // #pragma omp barrier
+    // #pragma omp for
 	// combine
 	for (long k = 0; k < N/2; k++)
 	{
@@ -127,6 +132,7 @@ void fft(VectorType& x)
 		x[k    ] = even[k] + t;
 		x[k+N/2] = even[k] - t;
 	}
+    // }
 }
 
 // inverse fft (in-place)
@@ -136,6 +142,7 @@ void ifft(VectorType& x)
     double inv_size = 1.0 / x.size();
     for (auto& xx: x) xx = std::conj(xx); // conjugate the input
 	fft(x);  	   // forward fft
+    // #pragma omp parallel for
     for (auto& xx: x) 
         xx = std::conj(xx)  // conjugate the output
             * inv_size;     // scale the numbers
@@ -181,14 +188,22 @@ DoubleVector propagator(DoubleVector wave,
     for (long i=0; i < lc+1; i++)
         half_filter[i]= (sin(M_PI*(2*i-lc)/(2*lc)))/2+0.5;
     
+    // #pragma omp barrier
+    // #pragma omp for nowait
     for (long i=0; i < nfreq/2+1; i++)
         filter[i] = half_filter[i];
-
+    
+    // #pragma omp barrier
+    // #pragma omp single nowait
     filter[nfreq/2+1] = 1;
-
+    
+    // #pragma omp barrier
+    // #pragma omp for nowait
     for (long i=nfreq/2+2; i < nfreq+1; i++)
         filter[i] = half_filter[nfreq+1-i];
 
+    // #pragma omp barrier    
+    // #pragma omp for nowait
     for (long i=0; i < n_wave/2; i++)
         half_wave[i] = wave[n_wave/2-1+i];
     }
@@ -217,11 +232,11 @@ DoubleVector propagator(DoubleVector wave,
     tstart1 = std::chrono::high_resolution_clock::now(); // start time (nano-seconds)
     fft(wave_spectral);
     tend1 = std::chrono::high_resolution_clock::now(); // end time (nano-seconds)
-    }
+    // }
     // spectrum U of upgoing waves just below the surface.
     // See eq. (43) and (44) in Ganley (1981).
-    #pragma omp barrier
-    #pragma omp for nowait
+    // #pragma omp barrier
+    // #pragma omp for nowait
     for (long i=0; i < nfreq+1; i++) {
         Complex omega{0, 2*M_PI*i*dF};
         Complex exp_omega = exp( - dT * omega);
@@ -229,6 +244,7 @@ DoubleVector propagator(DoubleVector wave,
         for (long n=nlayers-2; n > -1; n--)
             Y = exp_omega * (ref[n] + Y) / (1.0 + ref[n]*Y);
         U[i] = Y;
+    }
     }
     #pragma omp barrier
     #pragma omp for nowait
@@ -272,7 +288,8 @@ DoubleVector propagator(DoubleVector wave,
               << (tend - tstart - (tend1 - tstart1 + tend2 - tstart2)).count()*1e-9 << "\n";
     std::cout <<  "Elapsed time:" << std::setw(9) << std::setprecision(4)
               << (tend - tstart).count()*1e-9 << "\n";
-    
+    std::ofstream file("t_wo_FFT2.txt"); // open file
+        file << (tend - tstart - (tend1 - tstart1 + tend2 - tstart2)) << '\n';
     return seismogram;
 }
 
@@ -297,4 +314,5 @@ int main(int argc, char* argv[]){
     }
     std::cout <<  "Checksum    :" << std::setw(20) << std::setprecision(15)
               << checksum << "\n";
+    
 }
