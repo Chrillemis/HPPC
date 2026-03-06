@@ -1,0 +1,111 @@
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 2
+Shallow Water Solver initialized:
+  Grid size: 219 x 311
+  Grid spacing: dx=1267.04m, dy=1267.12m
+  Max depth: 4425.99m, Max wave speed: 208.372m/s
+  Time step: 2.43227s (CFL=0.4)
+  Land cells: 24830 (36.4563%)
+Gaussian IC: center=(119,150), amplitude=40m, spread=10 cells
+Running: 1800s (740 steps), output every 179.988s
+  Step 0/740, t=0s, max|η|=40m
+Simulation complete!
+
+Average performance is 3.43641 ns/grid point update
+
+Saving results to output.dat (11 frames, 311x219 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 4
+Shallow Water Solver initialized:
+  Grid size: 276 x 392
+  Grid spacing: dx=1005.23m, dy=1005.43m
+  Max depth: 4425.82m, Max wave speed: 208.368m/s
+  Time step: 1.92972s (CFL=0.4)
+  Land cells: 39442 (36.4556%)
+Gaussian IC: center=(150,190), amplitude=40m, spread=10 cells
+Running: 1800s (932 steps), output every 179.464s
+  Step 0/932, t=0s, max|η|=39.8005m
+  Step 930/932, t=1794.64s, max|η|=27.552m
+Simulation complete!
+
+Average performance is 3.95306 ns/grid point update
+
+Saving results to output.dat (12 frames, 392x276 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 6
+Shallow Water Solver initialized:
+  Grid size: 316 x 449
+  Grid spacing: dx=877.617m, dy=878.165m
+  Max depth: 4430.09m, Max wave speed: 208.469m/s
+  Time step: 1.68393s (CFL=0.4)
+  Land cells: 51758 (36.4791%)
+Gaussian IC: center=(171,217), amplitude=40m, spread=10 cells
+Running: 1800s (1068 steps), output every 178.497s
+  Step 0/1068, t=0s, max|η|=40m
+  Step 1060/1068, t=1784.97s, max|η|=20.1256m
+Simulation complete!
+
+Average performance is 3.48358 ns/grid point update
+
+Saving results to output.dat (12 frames, 449x316 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 8
+Shallow Water Solver initialized:
+  Grid size: 348 x 494
+  Grid spacing: dx=797.672m, dy=797.414m
+  Max depth: 4422m, Max wave speed: 208.278m/s
+  Time step: 1.53144s (CFL=0.4)
+  Land cells: 62709 (36.4774%)
+Gaussian IC: center=(189,239), amplitude=40m, spread=10 cells
+Running: 1800s (1175 steps), output every 179.178s
+  Step 0/1175, t=0s, max|η|=39.8005m
+  Step 1170/1175, t=1791.78s, max|η|=26.6791m
+Simulation complete!
+
+Average performance is 3.57442 ns/grid point update
+
+Saving results to output.dat (12 frames, 494x348 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 10
+Shallow Water Solver initialized:
+  Grid size: 375 x 533
+  Grid spacing: dx=739.306m, dy=740m
+  Max depth: 4428.57m, Max wave speed: 208.433m/s
+  Time step: 1.41879s (CFL=0.4)
+  Land cells: 72878 (36.4618%)
+Gaussian IC: center=(204,258), amplitude=40m, spread=10 cells
+Running: 1800s (1268 steps), output every 178.768s
+  Step 0/1268, t=0s, max|η|=39.8005m
+  Step 1260/1268, t=1787.68s, max|η|=16.5895m
+Simulation complete!
+
+Average performance is 3.6308 ns/grid point update
+
+Saving results to output.dat (12 frames, 533x375 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 12
+Shallow Water Solver initialized:
+  Grid size: 398 x 566
+  Grid spacing: dx=696.201m, dy=697.236m
+  Max depth: 4423.66m, Max wave speed: 208.317m/s
+  Time step: 1.33681s (CFL=0.4)
+  Land cells: 82158 (36.4712%)
+Gaussian IC: center=(216,274), amplitude=40m, spread=10 cells
+Running: 1800s (1346 steps), output every 179.133s
+  Step 0/1346, t=0s, max|η|=39.8005m
+  Step 1340/1346, t=1791.33s, max|η|=17.7577m
+Simulation complete!
+
+Average performance is 3.47324 ns/grid point update
+
+Saving results to output.dat (12 frames, 566x398 nx x ny grid)
+jovyan@29bc3c3cf7cc:~/erda_mount/module5$ ./run_tsunami.sh 14
+Shallow Water Solver initialized:
+  Grid size: 420 x 596
+  Grid spacing: dx=661.158m, dy=660.714m
+  Max depth: 4425.49m, Max wave speed: 208.36m/s
+  Time step: 1.26841s (CFL=0.4)
+  Land cells: 91306 (36.4757%)
+Gaussian IC: center=(228,289), amplitude=40m, spread=10 cells
+Running: 1800s (1419 steps), output every 178.845s
+  Step 0/1419, t=0s, max|η|=39.8005m
+  Step 1410/1419, t=1788.45s, max|η|=17.1278m
+Simulation complete!
+
+Average performance is 3.54365 ns/grid point update
+
+Saving results to output.dat (12 frames, 596x420 nx x ny grid)
